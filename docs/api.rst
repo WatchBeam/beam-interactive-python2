@@ -46,79 +46,98 @@ State
     :undoc-members:
     :show-inheritance:
 
+    .. attribute:: connection
 
-Submodules
-----------
+        The underlying :class:`~beam_interactive2.Connection` to the Interactive service. You should not need to deal with this most of the time.
 
-beam_interactive2.connection module
------------------------------------
-
-.. automodule:: beam_interactive2.connection
+.. autoclass:: beam_interactive2.Discovery
     :members:
     :undoc-members:
     :show-inheritance:
 
-beam_interactive2.discovery module
-----------------------------------
+Scenes
+------
 
-.. automodule:: beam_interactive2.discovery
+.. autoclass:: beam_interactive2.Scene
     :members:
     :undoc-members:
     :show-inheritance:
 
-beam_interactive2.encoding module
----------------------------------
+.. autoclass:: beam_interactive2.Control
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.Button
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.Joystick
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Utilities
+---------
+
+.. data:: beam_interactive2.keycode
+
+    Keycode is an instance of a class that helps translate keycodes from their textual representation to their corresponding numeric code, as represented on the protocol. For example::
+
+        from beam_interactive2 import keycode
+
+        print(keycode.up)     # => 38
+        print(keycode.a)      # => 65
+        getattr(keycode, '⌘') # => 91
+
+
+.. autoclass:: beam_interactive2._util.ChangeTracker
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2._util.Resource
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Errors
+------
+
+.. autoclass:: beam_interactive2.DiscoveryError
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.NoServersAvailableError
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.ShortCodeError
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.UnknownShortCodeError
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.ShortCodeAccessDeniedError
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.ShortCodeTimeoutError
+    :show-inheritance:
+
+Low-Level Protocol
+------------------
+
+.. autoclass:: beam_interactive2.Connection
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. autoclass:: beam_interactive2.Call
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 .. automodule:: beam_interactive2.encoding
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-beam_interactive2.errors module
--------------------------------
-
-.. automodule:: beam_interactive2.errors
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-beam_interactive2.keycodes module
----------------------------------
-
-.. automodule:: beam_interactive2.keycodes
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-beam_interactive2.log module
-----------------------------
-
-.. automodule:: beam_interactive2.log
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-beam_interactive2.scene module
-------------------------------
-
-.. automodule:: beam_interactive2.scene
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-beam_interactive2.state module
-------------------------------
-
-.. automodule:: beam_interactive2.state
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: beam_interactive2
     :members:
     :undoc-members:
     :show-inheritance:
