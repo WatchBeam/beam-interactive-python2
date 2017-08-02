@@ -2,14 +2,15 @@ import collections
 import asyncio
 from pyee import EventEmitter
 
-from .connection import Call, Connection
+from .connection import Connection
 from .discovery import Discovery
 from .scene import Scene
 
 
 class State(EventEmitter):
     """State is the state container for a single interactive session.
-    It should usually be created via the static ``connect`` method::
+    It should usually be created via the static
+    :func:`~beam_interactive2.State.connect` method::
 
         connection = State.connect(
             project_version_id=my_version_id,
@@ -17,9 +18,9 @@ class State(EventEmitter):
 
     The state can work in two modes for handling delivery of events and updates.
     You can use `pump()` calls synchronously within your game loop to apply
-    updates that have been queued. Alternately, you can call `pump_async()` to
+    updates that have been queued. Alternately, you can call ``pump_async()`` to
     signal to that state that you want updates delivered asynchronously, as soon
-    as they come in. For example:
+    as they come in. For example::
 
         # Async delivery. `giveInput` is emitted as soon as any input comes in.
         state.on('giveInput', lambda call: do_the_thing(call))
@@ -45,10 +46,10 @@ class State(EventEmitter):
     def __init__(self, connection):
         super(State, self).__init__()
         self._scenes = {'default': Scene('default')}
-        self._connection = connection
+        self.connection = connection
         self._enable_event_queue = True
         self._event_queue = collections.deque()
-        self._scenes['default']._attach_connection(self._connection)
+        self._scenes['default']._attach_connection(self.connection)
 
         self.on('onSceneCreate', self._on_scene_create_or_update)
         self.on('onSceneUpdate', self._on_scene_create_or_update)
@@ -80,7 +81,7 @@ class State(EventEmitter):
 
         async def run():
             try:
-                while await self._connection.has_packet():
+                while await self.connection.has_packet():
                     self.pump()
             except asyncio.CancelledError:
                 self._enable_event_queue = True
@@ -104,7 +105,7 @@ class State(EventEmitter):
         """
         self._event_queue.clear()
         while True:
-            call = self._connection.get_packet()
+            call = self.connection.get_packet()
             if call is None:
                 return
 
@@ -125,17 +126,18 @@ class State(EventEmitter):
             self._scenes[scene.id] = scene
             scene._attach_connection(self)
 
-        return await self._connection.call(
+        return await self.connection.call(
             'createScenes', [s._resolve_all() for s in scenes])
 
     async def set_ready(self, is_ready=True):
         """
         Marks the interactive integration as being ready-to-go. Must be called
         before controls will appear.
-        :param is_ready: true or false to allow input
-        :return: Reply
+
+        :param is_ready: True or False to allow input
+        :rtype: Reply
         """
-        return await self._connection.call('ready', {'isReady': is_ready})
+        return await self.connection.call('ready', {'isReady': is_ready})
 
     def _give_input(self, call):
         control_id = call.data['input']['controlID']
@@ -174,8 +176,9 @@ class State(EventEmitter):
         through into the Connection constructor.
 
         :param discovery:
+        :type discovery: Discovery
         :param kwargs:
-        :return:
+        :rtype: State
         """
 
         if 'address' not in kwargs:
