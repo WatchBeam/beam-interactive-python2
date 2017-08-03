@@ -10,11 +10,11 @@ You can now use the OAuthClient class with your OAuth client ID to get an access
 OAuth
 -----
 
-.. autoclass:: beam_interactive2.OAuthClient
+.. autoclass:: interactive_python.OAuthClient
     :members:
     :undoc-members:
 
-.. autoclass:: beam_interactive2.OAuthShortCode
+.. autoclass:: interactive_python.OAuthShortCode
     :members:
     :undoc-members:
 
@@ -22,13 +22,13 @@ OAuth
 
         The short six-digit code to be displayed to the user. They should be prompted to enter it on `mixer.com/go <https://mixer.com/go>`_.
 
-.. autoclass:: beam_interactive2.OAuthTokens
+.. autoclass:: interactive_python.OAuthTokens
     :members:
     :undoc-members:
 
     .. attribute:: access
 
-        The OAuth access token to use in :func:`~beam_interactive2.State.connect`.
+        The OAuth access token to use in :func:`~interactive_python.State.connect`.
 
     .. attribute:: refresh
 
@@ -41,16 +41,16 @@ OAuth
 State
 -----
 
-.. autoclass:: beam_interactive2.State
+.. autoclass:: interactive_python.State
     :members:
     :undoc-members:
     :show-inheritance:
 
     .. attribute:: connection
 
-        The underlying :class:`~beam_interactive2.Connection` to the Interactive service. You should not need to deal with this most of the time.
+        The underlying :class:`~interactive_python.Connection` to the Interactive service. You should not need to deal with this most of the time.
 
-.. autoclass:: beam_interactive2.Discovery
+.. autoclass:: interactive_python.Discovery
     :members:
     :undoc-members:
     :show-inheritance:
@@ -58,22 +58,26 @@ State
 Scenes
 ------
 
-.. autoclass:: beam_interactive2.Scene
+.. autoclass:: interactive_python.Scene
+    :members:
+    :show-inheritance:
+
+    .. attribute:: controls
+
+        A dict of control IDs to :class:`~interactive_python.Control`s in the scene.
+
+
+.. autoclass:: interactive_python.Control
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.Control
+.. autoclass:: interactive_python.Button
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.Button
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-.. autoclass:: beam_interactive2.Joystick
+.. autoclass:: interactive_python.Joystick
     :members:
     :undoc-members:
     :show-inheritance:
@@ -81,23 +85,23 @@ Scenes
 Utilities
 ---------
 
-.. data:: beam_interactive2.keycode
+.. data:: interactive_python.keycode
 
     Keycode is an instance of a class that helps translate keycodes from their textual representation to their corresponding numeric code, as represented on the protocol. For example::
 
-        from beam_interactive2 import keycode
+        from interactive_python import keycode
 
         print(keycode.up)     # => 38
         print(keycode.a)      # => 65
         getattr(keycode, '⌘') # => 91
 
 
-.. autoclass:: beam_interactive2._util.ChangeTracker
+.. autoclass:: interactive_python._util.ChangeTracker
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: beam_interactive2._util.Resource
+.. autoclass:: interactive_python._util.Resource
     :members:
     :undoc-members:
     :show-inheritance:
@@ -105,39 +109,39 @@ Utilities
 Errors
 ------
 
-.. autoclass:: beam_interactive2.DiscoveryError
+.. autoclass:: interactive_python.DiscoveryError
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.NoServersAvailableError
+.. autoclass:: interactive_python.NoServersAvailableError
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.ShortCodeError
+.. autoclass:: interactive_python.ShortCodeError
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.UnknownShortCodeError
+.. autoclass:: interactive_python.UnknownShortCodeError
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.ShortCodeAccessDeniedError
+.. autoclass:: interactive_python.ShortCodeAccessDeniedError
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.ShortCodeTimeoutError
+.. autoclass:: interactive_python.ShortCodeTimeoutError
     :show-inheritance:
 
 Low-Level Protocol
 ------------------
 
-.. autoclass:: beam_interactive2.Connection
+.. autoclass:: interactive_python.Connection
     :members:
     :undoc-members:
     :show-inheritance:
 
-.. autoclass:: beam_interactive2.Call
+.. autoclass:: interactive_python.Call
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-.. automodule:: beam_interactive2.encoding
+.. automodule:: interactive_python.encoding
     :members:
     :undoc-members:
     :show-inheritance:

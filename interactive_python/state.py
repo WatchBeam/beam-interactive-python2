@@ -10,11 +10,21 @@ from .scene import Scene
 class State(EventEmitter):
     """State is the state container for a single interactive session.
     It should usually be created via the static
-    :func:`~beam_interactive2.State.connect` method::
+    :func:`~interactive_python.State.connect` method::
 
         connection = State.connect(
             project_version_id=my_version_id,
             authorization="Bearer " + oauth_token)
+
+    The Scene is a pyee.EventEmitter. When calls come down, they're always
+    emitted on the State by their method name. So, for instance, you can
+    listen to "onSceneCreate" or "onParticipantJoin" on the scene::
+
+        def greet(call):
+            for participant in call.data['participants']:
+                print('Welcome {}!', participant['username'])
+
+        scene.on('onParticipantJoin', greet)
 
     The state can work in two modes for handling delivery of events and updates.
     You can use `pump()` calls synchronously within your game loop to apply
@@ -59,12 +69,17 @@ class State(EventEmitter):
         self.on('onControlDelete', self._on_control_delete)
         self.on('giveInput', self._give_input)
 
-    @property
-    def scenes(self):
+    def scene(self, name):
         """
-        :rtype: (dict of str: Scene)
+        Looks up an existing scene by ID. It returns None if the scene does
+        not exist.
+
+        :param name: The name of the scene to look up
+        :type name: str
+        :return:
+        :rtype: Scene
         """
-        return self._scenes
+        return self._scenes.get(name, None)
 
     def pump_async(self, loop=asyncio.get_event_loop()):
         """

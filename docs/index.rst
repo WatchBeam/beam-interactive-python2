@@ -3,8 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to interactive-python's documentation!
-==============================================
+Mixer Interactive Python API
+============================
+
+This API is a reference implementation for connecting to Mixer's Interactive service as a game client. This documentation and library is stable, but is still actively developed and further expansions are planned.
 
 Contents:
 
@@ -12,6 +14,7 @@ Contents:
     :maxdepth: 2
 
     api
+    examples
 
 
 

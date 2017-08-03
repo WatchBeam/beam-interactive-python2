@@ -21,7 +21,7 @@ class OAuthGrant:
 
 class OAuthTokens:
     """OAuthTokens is a bearer from an OAuth access and refresh token retrieved
-    via the :func:`~beam_interactive2.OAuthShortCode.accepted` method.
+    via the :func:`~interactive_python.OAuthShortCode.accepted` method.
     """
 
     def __init__(self, body):
@@ -99,7 +99,7 @@ class OAuthClient:
 
     .. code:: python
 
-        import beam_interactive2 as interactive
+        import interactive_python as interactive
         import asyncio
 
         async def get_access_token(client):
